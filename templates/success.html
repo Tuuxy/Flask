@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+</head>
+<body>
+    <h2>Thank You for Contacting Us</h2>
+    <p>Here is the information you submitted:</p>
+    <ul>
+        <li><strong>First Name:</strong> {{ first_name }}</li>
+        <li><strong>Last Name:</strong> {{ last_name }}</li>
+        <li><strong>Email:</strong> {{ email }}</li>
+        <li><strong>Country:</strong> {{ country }}</li>
+        <li><strong>Message:</strong> {{ message }}</li>
+        <li><strong>Gender:</strong> {{ gender }}</li>
+        <li><strong>Subjects:</strong>
+            <ul>
+                {% for subject in subjects %}
+                <li>{{ subject }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
