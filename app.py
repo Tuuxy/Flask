@@ -1,15 +1,9 @@
 import re
-import secrets
 
 import bleach
 from flask import Flask, render_template, request, redirect, url_for
-from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
-
-# CSRFProtection against Cross-Site Forgery
-app.secret_key = secrets.token_hex(16) # generating a key
-csrf = CSRFProtect(app)
 
 # Sanitize html with bleach
 def sanitize_input(input):
