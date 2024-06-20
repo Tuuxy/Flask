@@ -3,54 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Contact Form</title>
 </head>
 <body>
-    <h2>Contact Us</h2>
-    {% if error_message %}
-    <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
-    <form action="/submit_form" method="POST">
-
-        <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name" required><br><br>
-
-        <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name" required><br><br>
-
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="country">Country:</label><br>
-        <select id="country" name="country" required>
-            <option value="">Select Country</option>
-            <option value="Belgium">Belgium</option>
-            <option value="France">France</option>
-            <option value="Luxembourg">Luxembourg</option>
-            <option value="Germany">Germany</option>
-        </select><br><br>
-
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-
-        <label>Gender:</label><br>
-        <input type="radio" id="gender_male" name="gender" value="M" required>
-        <label for="gender_male">Male</label><br>
-        <input type="radio" id="gender_female" name="gender" value="F" required>
-        <label for="gender_female">Female</label><br><br>
-
-        <label>Subjects:</label><br>
-        <input type="checkbox" id="subject_repair" name="subjects[]" value="Repair">
-        <label for="subject_repair">Repair</label><br>
-        <input type="checkbox" id="subject_order" name="subjects[]" value="Order">
-        <label for="subject_order">Order</label><br>
-        <input type="checkbox" id="subject_others" name="subjects[]" value="Others">
-        <label for="subject_others">Others</label><br><br>
-
-        <label style="display:none;">Leave this field blank:</label>
-        <input type="text" name="honeypot" style="display:none;">
-
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h2>Contact Us</h2>
+        {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <form action="/submit_form" method="POST">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="">Select Country</option>
+                    {% for country in countries %}
+                    <option value="{{ country }}">{{ country }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <input type="radio" id="gender_male" name="gender" value="M" required>
+                    <label for="gender_male">Male</label>
+                    <input type="radio" id="gender_female" name="gender" value="F" required>
+                    <label for="gender_female">Female</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Subjects:</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="subject_repair" name="subjects[]" value="Repair">
+                    <label for="subject_repair">Repair</label>
+                    <input type="checkbox" id="subject_order" name="subjects[]" value="Order">
+                    <label for="subject_order">Order</label>
+                    <input type="checkbox" id="subject_others" name="subjects[]" value="Others">
+                    <label for="subject_others">Others</label>
+                </div>
+            </div>
+            <input type="text" name="honeypot" style="display:none;">
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
+
