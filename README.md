@@ -59,3 +59,44 @@ FLUSH PRIVILEGES;`
 
 `EXIT;`
 
+## Setting up the python app
+
+### Install dependencies
+
+`pip install -r dependencies.txt`
+
+### Insert your db credentials
+
+Modify the code of app.py to make the app use your own database :
+
+```
+# MySQL configuration
+
+db = mysql.connector.connect(
+
+host="localhost",
+
+user="DB_USERNAME", # Replace with your MySQL username
+
+password="DB_PASSWORD", # Replace with your MySQL password
+
+database="flask_data" # Replace with your MySQL database name
+
+)
+```
+
+### Run the app
+
+`python app.py`
+
+Visit : http://127.0.0.1:5000/ to access the app.
+
+### Verify your data 
+
+Verify if the data you submitted is in your database : 
+
+`mysql -u username -p flask_data`
+
+`SELECT * FROM flask_data;`
+
+ The data should be stored there ! 
